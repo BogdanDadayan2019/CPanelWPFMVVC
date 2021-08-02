@@ -78,7 +78,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\CoinResponse.cs" />
     <Compile Include="Model\DeCoin.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="Model\SummaryPrice.cs" />

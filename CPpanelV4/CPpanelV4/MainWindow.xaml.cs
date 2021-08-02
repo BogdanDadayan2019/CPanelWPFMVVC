@@ -19,31 +19,6 @@ namespace CPpanelV4
             InitializeComponent();
             this.DataContext = new ApplicationViewModel();
             if (coinsList.SelectedItem == null) return;
-
-        }
-
-     
-        
-        Coin coin = new Coin();
-        SummaryPrice summaryPrice = new SummaryPrice();
-        
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            // allDifff.Foreground = Brushes.Red;
-            float tmp = float.Parse(summaryPrice.AllDiff, CultureInfo.InvariantCulture.NumberFormat);
-            
-
-            if (tmp < 0)
-            {
-                allDiffColor.Foreground = Brushes.Red;
-            }
-            else if (tmp > 0)
-            {
-                allDiffColor.Foreground = Brushes.Green;
-            }
-
-
         }
     }
 }

@@ -23,6 +23,7 @@ namespace CPpanelV4
                 OnPropertyChanged("Title");
             }
         }
+
         public int Count
         {
             get { return count; }
@@ -32,6 +33,7 @@ namespace CPpanelV4
                 OnPropertyChanged("Count");
             }
         }
+
         public int Price
         {
             get { return price; }
@@ -63,8 +65,6 @@ namespace CPpanelV4
                 OnPropertyChanged("DiffPrice");
             }
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

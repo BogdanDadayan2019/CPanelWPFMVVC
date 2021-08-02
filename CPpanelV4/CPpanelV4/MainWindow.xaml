@@ -5,30 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPpanelV4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="738.5">
+        Title="Coin Board" Height="513.587" Width="738.5">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="148*" />
+            <RowDefinition Height="285*"/>
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
 
-        <ListBox x:Name="coinsList" ItemsSource="{Binding Coins}" Margin="183,138,183,10">
+        <ListBox x:Name="coinsList" ItemsSource="{Binding Coins}" Margin="42,59,34,10" Grid.Row="1" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Title}" FontSize="16" />
-                        <TextBlock Text="{Binding Count}" FontSize="12" />
-                        <TextBlock Text="{Binding Price}" FontSize="13" />
-                        <TextBlock Text="{Binding FactPrice}" FontSize="13" />
-                        <TextBlock Text="{Binding DiffPrice}" FontSize="13" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" FontSize="16" Margin="22" MaxWidth="150" MinWidth="75"/>
+                        <TextBlock Text="{Binding FactPrice}" FontSize="16" Margin="22" MaxWidth="150" MinWidth="75" />
+                        <TextBlock Text="{Binding Count}" FontSize="16" Margin="22" MaxWidth="150" MinWidth="75" />
+                        <TextBlock Text="{Binding Price}" FontSize="16" Margin="22" MaxWidth="150" MinWidth="75"/>
+                        <TextBlock Text="{Binding DiffPrice}" FontSize="16" Margin="22" MaxWidth="150" MinWidth="75" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="512,24,26,295">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="512,24,26,66">
             <Button Content="Add" Margin="10" Command="{Binding AddCommand}" Width="44"  />
             <Button Content="Change" Margin="10" Command="{Binding EditCommand}"
                     CommandParameter="{Binding ElementName=coinsList, Path=SelectedItem}"  />
@@ -36,26 +37,35 @@
                     CommandParameter="{Binding ElementName=coinsList, Path=SelectedItem}" Width="44"  />
         </StackPanel>
 
-        <StackPanel Margin="72,225,581,105">
+        <StackPanel Margin="696,88,10,56">
             <Button Content="reload" Margin="10" Command="{Binding ViewCommand}" Width="44" />
         </StackPanel>
 
-        <StackPanel Margin="72,269,581,61">
-            <Button Content="full" Margin="10" Command="{Binding FullPriceCommand}" Width="44"  />
+        <StackPanel Margin="566,82,139,44">
+            <Button Content="full" Margin="16,10,17,10" Command="{Binding FullPriceCommand}" Width="44"  />
         </StackPanel>
 
-        <StackPanel Margin="50,57,566,286" DataContext="{Binding SummaryPrice}">
-            <TextBlock x:Name="summColor" FontSize="18" Text="{Binding SumPrice, UpdateSourceTrigger=PropertyChanged}" Height="35" Margin="0,0,-11,0" />
+        <StackPanel  DataContext="{Binding SummaryPrice}" Margin="35,50,552,68">
+            <TextBlock x:Name="summColor" FontSize="18" Text="{Binding SumPrice, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding BdColorTwo}"  />
         </StackPanel>
 
-        <StackPanel Margin="50,93,552,237" DataContext="{Binding SummaryPrice}">
-            <TextBlock x:Name="allDiffColor" FontSize="18" Text="{Binding AllDiff, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Path=BdColor}" Height="27" />
+        <StackPanel  DataContext="{Binding SummaryPrice}" Margin="35,85,539,26">
+            <TextBlock x:Name="allDiffColor" FontSize="18" Text="{Binding AllDiff, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding BdColor}"  />
         </StackPanel>
 
-        <Label x:Name="label" Content="Current Balance" HorizontalAlignment="Left" Margin="29,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.685,1.368" Width="128" FontFamily="Source Serif Pro" Background="White"/>
-        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="USD" HorizontalAlignment="Left" Margin="207,56,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2_Copy" Content="%" HorizontalAlignment="Left" Margin="207,93,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="614,244,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Label x:Name="label" Content="Current Balance" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.685,1.368" Width="128" FontFamily="Source Serif Pro" Background="White"/>
+        <Label x:Name="label2" Content="$" HorizontalAlignment="Left" Margin="19,51,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2_Copy" Content="%" HorizontalAlignment="Left" Margin="16,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.25,0.538" />
+        <Label x:Name="label1" Content="You Assets" HorizontalAlignment="Left" Margin="35,122,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.348,0.615" Height="35" Grid.RowSpan="2"/>
+
+
+        <Label x:Name="label3" Content="Name" HorizontalAlignment="Left" Margin="66,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.632,0.538" Height="34" Grid.Row="1"/>
+        <Label x:Name="label3_Copy" Content="Price" HorizontalAlignment="Left" Margin="188,17,0,0" VerticalAlignment="Top" Height="34" Grid.Row="1"/>
+        <Label x:Name="label3_Copy1" Content="Holdings" HorizontalAlignment="Left" Margin="284,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.649,0.615" Height="34" Grid.Row="1"/>
+        <Label x:Name="label3_Copy2" Content="Avg. Buy Price" HorizontalAlignment="Left" Margin="418,17,0,0" VerticalAlignment="Top" Height="34" Grid.Row="1"/>
+        <Label x:Name="label3_Copy3" Content="Profit/Loss" HorizontalAlignment="Left" Margin="566,17,0,0" VerticalAlignment="Top" Height="34" Grid.Row="1"/>
+
+
+
     </Grid>
 </Window>

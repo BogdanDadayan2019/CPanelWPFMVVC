@@ -9,7 +9,6 @@ namespace CPpanelV4.Model
     class DeCoin
     {
         public List<Data> data;
-        public string timestamp;
     }
 
     public class Data

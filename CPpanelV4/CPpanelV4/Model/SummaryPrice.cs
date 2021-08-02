@@ -8,10 +8,11 @@ namespace CPpanelV4
     public class SummaryPrice : INotifyPropertyChanged
     {
         
-
         private string sumPrice = "";
-        private string allDiff = "1";
+        private string allDiff = "";
         private Brush bdColor;
+        private Brush bdColorTwo;
+
         public string SumPrice
         {
             get { return sumPrice; }
@@ -26,10 +27,8 @@ namespace CPpanelV4
         {
             get { return allDiff; }
             set
-            {
-               
-                allDiff = value;
-                
+            {           
+                allDiff = value;  
                 OnPropertyChanged("AllDiff");
             }
         }
@@ -41,6 +40,16 @@ namespace CPpanelV4
             {
                 bdColor = value;
                 OnPropertyChanged("BdColor");
+            }
+        }
+
+        public Brush BdColorTwo
+        {
+            get { return bdColorTwo; }
+            set
+            {
+                bdColorTwo = value;
+                OnPropertyChanged("BdColorTwo");
             }
         }
 
@@ -56,66 +65,3 @@ namespace CPpanelV4
 
     }
 }
-
-/*
-
-       IEnumerable<Coin> coins;
-
-       private string sumPrice;
-
-       public string SumPrice
-       {
-           get { return sumPrice; }
-           set
-           {
-               sumPrice = value;
-               OnPropertyChanged("SumPrice");
-           }
-       }
-
-
-       public void allPrice()
-       {
-           foreach (object o in coins)
-           {
-               Coin coin = new Coin();
-               sumPrice += coin.Price;
-           }
-       }
-
-       public SummaryPrices() { sumPrice = "Неизвестно"; }
-
-
-
-
-       public event PropertyChangedEventHandler PropertyChanged;
-       public void OnPropertyChanged([CallerMemberName]string prop = "")
-       {
-           if (PropertyChanged != null)
-               PropertyChanged(this, new PropertyChangedEventArgs(prop));
-       }
-
-       public IEnumerable<Coin> Coins
-       {
-           get { return coins; }
-           set
-           {
-               coins = value;
-               OnPropertyChanged("Coins");
-
-           }
-       }
-
-       internal object AllPrice()
-       {
-           Coin coin = new Coin();
-           foreach (object o in coins)
-           {
-
-               sumPrice += coin.Price;
-           }
-           return sumPrice;
-       }
-   }
-
-   */
