@@ -45,7 +45,7 @@ namespace CPpanelV4
 
             bgTimer = new System.Timers.Timer();
             bgTimer.Elapsed += BgTimer_Elapsed;
-            bgTimer.Interval = 1;
+            bgTimer.Interval = 1000;
             bgTimer.Start();
         }
 
@@ -107,7 +107,7 @@ namespace CPpanelV4
                     (viewCommand = new RelayCommand((o) =>
                     {
 
-                        CalculateSummaryTotal();
+                      //  CalculateSummaryTotal();
 
 
                     }));
@@ -193,42 +193,48 @@ namespace CPpanelV4
 
         public void BdJson()
         {
-            string url = "http://api.coincap.io/v2/assets";
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            string response;
-            using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+            try
             {
-                response = streamReader.ReadToEnd();
-            }
-            DeCoin deCoin = JsonConvert.DeserializeObject<DeCoin>(response);
-
-            foreach (var i1 in coins)
-            {
-                foreach (var i2 in deCoin.data)
+                string url = "http://api.coincap.io/v2/assets";
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                string response;
+                using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
                 {
-                    if (i2.name == i1.Title)
+                    response = streamReader.ReadToEnd();
+                }
+                DeCoin deCoin = JsonConvert.DeserializeObject<DeCoin>(response);
+
+                foreach (var i1 in coins)
+                {
+                    foreach (var i2 in deCoin.data)
                     {
-                        float tmp = float.Parse(i2.priceUsd, CultureInfo.InvariantCulture.NumberFormat);
-                        i1.FactPrice = (tmp * i1.Count).ToString();
-
-                        float tmp2 = float.Parse(i1.FactPrice.ToString()); 
-                        i1.DiffPrice = ((((tmp2 - i1.Price) / i1.Price)* 100)).ToString();
-
-                        if (tmp2 < tmp)
+                        if (i2.name == i1.Title)
                         {
-                            summaryPrice.BdColorTwo = Brushes.Red;
-                        }
-                        else
-                        {
-                            summaryPrice.BdColorTwo = Brushes.Green;
-                        }
+                            float tmp = float.Parse(i2.priceUsd, CultureInfo.InvariantCulture.NumberFormat);
+                            i1.FactPrice = (tmp * i1.Count).ToString();
 
-                        break;
+                            float tmp2 = float.Parse(i1.FactPrice.ToString());
+                            i1.DiffPrice = ((((tmp2 - i1.Price) / i1.Price) * 100)).ToString();
+
+                            if (tmp2 < tmp)
+                            {
+                                summaryPrice.BdColorTwo = Brushes.Red;
+                            }
+                            else
+                            {
+                                summaryPrice.BdColorTwo = Brushes.Green;
+                            }
+
+                            break;
+                        }
                     }
                 }
             }
+            catch
+            {
 
+            }
           
 
         }
